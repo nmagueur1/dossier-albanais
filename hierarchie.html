@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiérarchie — Familja Berisha</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ─── Member Slider ─────────────────────────────── */
+    .rank-members { margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid var(--border); }
+    .rank-members-label {
+      font-size:.56rem; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--gray); margin-bottom:.9rem;
+    }
+
+    .member-slider-wrap { position:relative; }
+    .member-slider-track-wrap { overflow:hidden; border-radius:2px; }
+    .member-slider-track { display:flex; transition:transform .4s cubic-bezier(.25,.46,.45,.94); }
+
+    /* ─── Member card ─── */
+    .member-card {
+      min-width:100%; display:flex; align-items:center;
+      gap:1.25rem; padding:.5rem 0;
+    }
+    .member-photo {
+      width:68px; height:68px; border-radius:50%;
+      border:1.5px solid rgba(201,168,76,.35);
+      overflow:hidden; flex-shrink:0;
+      background:#101010;
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .member-photo img {
+      width:100%; height:100%; object-fit:cover;
+      position:absolute; inset:0;
+    }
+    .member-initials {
+      font-family:var(--cormorant); font-size:1.35rem; font-weight:600;
+      color:rgba(201,168,76,.55); letter-spacing:.05em; line-height:1;
+    }
+    .member-info { flex:1; min-width:0; }
+    .member-name {
+      font-family:var(--cormorant); font-size:1.1rem; font-weight:600;
+      color:var(--white); margin-bottom:.18rem; white-space:nowrap;
+      overflow:hidden; text-overflow:ellipsis;
+    }
+    .member-discord {
+      font-size:.68rem; letter-spacing:.1em; color:var(--gold);
+      margin-bottom:.28rem;
+    }
+    .member-age { font-size:.65rem; color:var(--gray-light); }
+
+    /* ─── Vacant slot ─── */
+    .member-slot {
+      min-width:100%; display:flex; align-items:center;
+      gap:1.25rem; padding:.5rem 0; opacity:.3;
+    }
+    .member-slot .member-photo {
+      border-style:dashed; border-color:var(--border);
+    }
+    .member-slot .member-name {
+      font-family:var(--cormorant); font-size:1rem; font-style:italic;
+      color:var(--gray);
+    }
+    .member-slot .member-discord,
+    .member-slot .member-age { font-size:.65rem; color:var(--gray); }
+
+    /* ─── Slider controls ─── */
+    .slider-controls {
+      display:flex; align-items:center; gap:.6rem; margin-top:.75rem;
+    }
+    .slider-btn {
+      background:none; border:1px solid var(--border);
+      color:var(--gray-light); cursor:pointer;
+      width:26px; height:26px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:.75rem; transition:all .2s;
+    }
+    .slider-btn:hover:not(:disabled) { border-color:var(--gold); color:var(--gold); }
+    .slider-btn:disabled { opacity:.2; cursor:default; }
+    .slider-dots { display:flex; gap:.35rem; align-items:center; }
+    .slider-dot {
+      width:5px; height:5px; border-radius:50%; padding:0; border:none;
+      background:var(--border); cursor:pointer; transition:all .2s;
+    }
+    .slider-dot.active { background:var(--gold); transform:scale(1.5); }
+    .slider-count {
+      margin-left:auto; font-size:.58rem;
+      letter-spacing:.2em; color:var(--gray);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-box"><span>A</span></div>
+    <div class="logo-text"><strong>FAMILJA</strong><small>Berisha</small></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="hierarchie.html">Hiérarchie</a>
+    <a href="territoire.html">Territoire</a>
+    <a href="histoire.html">Valeurs</a>
+    <a href="recrutement.html">Recrutement</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="recrutement.html" class="nav-cta btn">Rejoindre</a>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a><a href="hierarchie.html">Hiérarchie</a>
+  <a href="territoire.html">Territoire</a><a href="histoire.html">Valeurs</a>
+  <a href="recrutement.html">Recrutement</a><a href="contact.html">Contact</a>
+  <a href="recrutement.html" class="btn btn-red" style="margin-top:1rem;">Rejoindre</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="dot-grid"></div>
+  <div class="page-hero-content">
+    <span class="section-label" style="animation:fadeUp .7s ease .2s both;display:block;">Structure Interne</span>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);letter-spacing:.04em;animation:fadeUp .7s ease .4s both;">La Hiérarchie</h1>
+    <div class="divider-gold" style="animation:fadeIn .7s ease .6s both;"></div>
+    <p style="font-size:.78rem;color:var(--gray-light);max-width:480px;margin:.75rem auto 0;line-height:1.8;animation:fadeUp .7s ease .7s both;">Chaque rang a sa place. Chaque place a sa raison. L'ordre est sacré.</p>
+  </div>
+  <div class="page-hero-bottom"></div>
+</section>
+
+<!-- HIERARCHY ACCORDION -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Organisation</span>
+      <h2 class="section-title">Schéma de Commandement</h2>
+      <p style="font-size:.75rem;color:var(--gray-light);max-width:500px;margin:.75rem auto 0;">Cliquez sur chaque rang pour en découvrir le détail.</p>
+    </div>
+
+    <div class="hierarchy">
+
+      <!-- ══════════════════════════════════════════
+           KRY — 1 / 1
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:100%;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">👑</div>
+            <div>
+              <div class="rank-name" style="color:var(--gold);">KRY</div>
+              <div class="rank-title">Chef Suprême — 1 poste</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:rgba(201,168,76,.4);color:var(--gold);">
+              <div class="dot" style="background:var(--gold);border-radius:50%;width:5px;height:5px;animation:pulse 2s infinite;"></div>
+              Suprême
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep"></div>
+          <p class="rank-desc">Chef suprême et incontesté de la Familja. Sa parole est loi. Ses décisions sont irréfutables. Il répond uniquement devant Dieu et sa conscience.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:var(--gold);">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Décisions stratégiques majeures</li>
+                <li>Alliances et traités inter-organisations</li>
+                <li>Justice interne et sentences définitives</li>
+                <li>Vision à long terme de la Familja</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:var(--gold);">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Nomination uniquement. Aucune candidature possible.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► MEMBRE 1 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/dante-berisha.jpg" alt="Dante Berisha"> -->
+                      <span class="member-initials">AB</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Arben Berisha</div>
+                      <div class="member-discord">@mgrstudio.fr</div>
+                      <div class="member-age">Âge RP : 30 ans</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 1 -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev" disabled>←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next" disabled>→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+      <div class="rank-connector"></div>
+
+      <!-- ══════════════════════════════════════════
+           Nënkry — 1 / 1
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:92%;margin-left:auto;margin-right:auto;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">⚜️</div>
+            <div>
+              <div class="rank-name" style="color:var(--gold);">Nënkry</div>
+              <div class="rank-title">Sous-Chef — 1 poste</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:rgba(201,168,76,.3);color:var(--gold-light);">
+              <div class="dot" style="background:var(--gold-light);border-radius:50%;width:5px;height:5px;animation:pulse 2s infinite;"></div>
+              Commandement
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep"></div>
+          <p class="rank-desc">Bras droit absolu du KRY. Il assure la continuité du commandement et fait le lien entre la direction et les membres. Sa loyauté doit être sans faille.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:var(--gold-light);">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Représenter le KRY en son absence</li>
+                <li>Coordination entre les KAP</li>
+                <li>Superviser les opérations internes</li>
+                <li>Médiation et résolution des conflits</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:var(--gold-light);">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Désigné par le KRY.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► MEMBRE 1 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/ne0zox.jpg" alt="Ne0zox"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@ne0zox</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 1 -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev" disabled>←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next" disabled>→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+      <div class="rank-connector"></div>
+
+      <!-- ══════════════════════════════════════════
+           KËSH — 2 / 3
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:84%;margin-left:auto;margin-right:auto;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">🦅</div>
+            <div>
+              <div class="rank-name" style="color:#c0c0c0;">KËSH</div>
+              <div class="rank-title">Conseiller — 2 / 3 postes</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:rgba(192,192,192,.3);color:#c0c0c0;">
+              <div class="dot" style="background:#c0c0c0;border-radius:50%;width:5px;height:5px;animation:pulse 2s infinite;"></div>
+              Stratégie
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep" style="background:linear-gradient(90deg,#c0c0c0,transparent);"></div>
+          <p class="rank-desc">Voix de la raison et de la stratégie. Sans titre de commandement direct, il possède l'oreille du KRY et joue un rôle clé dans les grandes décisions de la Familja.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:#c0c0c0;">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Conseiller stratégique du KRY</li>
+                <li>Analyse des menaces et opportunités</li>
+                <li>Négociations sensibles et diplomatie</li>
+                <li>Mémoire institutionnelle de la Familja</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:#c0c0c0;">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Désigné sur critères de confiance et d'expérience.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang — 1 / 1</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► MEMBRE 1 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/fatrix.jpg" alt="Fatrix"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@fatrix_noflop</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 1 -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev">←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next">→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+      <div class="rank-connector"></div>
+
+      <!-- ══════════════════════════════════════════
+           KAP — 0 / 3
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:76%;margin-left:auto;margin-right:auto;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">🔱</div>
+            <div>
+              <div class="rank-name" style="color:var(--red-light);">KAP</div>
+              <div class="rank-title">Chef de Section — 2 / 3 postes</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:rgba(139,0,0,.4);color:var(--red-light);">
+              <div class="dot" style="background:var(--red-light);border-radius:50%;width:5px;height:5px;animation:pulse 2s infinite;"></div>
+              Commandement
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep"></div>
+          <p class="rank-desc">Le KAP encadre ses soldats et répond de leurs actes devant le commandement. C'est un homme de terrain respecté, dont l'autorité est reconnue par ses frères.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:var(--red-light);">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Encadrement de son groupe d'USH</li>
+                <li>Planification des actions de terrain</li>
+                <li>Rendre compte au commandement</li>
+                <li>Maintien de la discipline au sein de sa section</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:var(--red-light);">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Promu par le commandement selon le mérite.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang — 2 / 3</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► MEMBRE 1 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/miyata.jpg" alt="Miyata"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@miyata</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 1 -->
+
+                  <!-- ► MEMBRE 2 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/zak.jpg" alt="Zak"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@zak.exe</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 2 -->
+
+                  <!-- ► POSTE VACANT -->
+                  <div class="member-slot">
+                    <div class="member-photo">
+                      <span class="member-initials" style="font-size:.8rem;color:var(--gray);">—</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Poste vacant</div>
+                      <div class="member-discord">—</div>
+                      <div class="member-age">—</div>
+                    </div>
+                  </div>
+                  <!-- /POSTE VACANT -->
+
+                  <!--
+                  ════════════════════════════════════════
+                  AJOUTER UN KAP : copier-coller ici ↓
+                  ════════════════════════════════════════
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <img src="photos/nom-fichier.jpg" alt="Nom RP">
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Prénom Nom RP</div>
+                      <div class="member-discord">@pseudo_discord</div>
+                      <div class="member-age">Âge RP : XX ans</div>
+                    </div>
+                  </div>
+                  -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev">←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next">→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+      <div class="rank-connector"></div>
+
+      <!-- ══════════════════════════════════════════
+           USH — variable
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:68%;margin-left:auto;margin-right:auto;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">⚔️</div>
+            <div>
+              <div class="rank-name" style="color:var(--gray-light);">USH</div>
+              <div class="rank-title">Soldat Confirmé — effectif variable</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:var(--border);color:var(--gray-light);">
+              <div class="dot" style="background:var(--gray-light);border-radius:50%;width:5px;height:5px;"></div>
+              Membre
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep" style="background:linear-gradient(90deg,var(--gray),transparent);"></div>
+          <p class="rank-desc">Membre à part entière de la Familja. L'USH a traversé la période probatoire et a été officiellement accepté. Il est un frère parmi les frères.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:var(--gray-light);">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Exécuter les missions confiées par son KAP</li>
+                <li>Respecter et incarner le code d'honneur</li>
+                <li>Soutenir ses frères en toutes circonstances</li>
+                <li>Renforcer la présence de la Familja</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:var(--gray-light);">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Intégration par vote des membres actifs.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang — 2</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► MEMBRE 1 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/bayke.jpg" alt="Bayke"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@bayke</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 1 -->
+
+                  <!-- ► MEMBRE 2 -->
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <!-- Pour ajouter la PDP : <img src="photos/sashouu.jpg" alt="Sashouu"> -->
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">— à définir —</div>
+                      <div class="member-discord">@Sashouu</div>
+                      <div class="member-age">Âge RP : —</div>
+                    </div>
+                  </div>
+                  <!-- /MEMBRE 2 -->
+
+                  <!--
+                  ════════════════════════════════════════
+                  AJOUTER UN USHTAR : copier-coller ici ↓
+                  ════════════════════════════════════════
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <img src="photos/nom-fichier.jpg" alt="Nom RP">
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Prénom Nom RP</div>
+                      <div class="member-discord">@pseudo_discord</div>
+                      <div class="member-age">Âge RP : XX ans</div>
+                    </div>
+                  </div>
+                  -->
+
+                  <!-- placeholder conservé pour éviter un slider vide — à supprimer si ≥1 membre -->
+                  <div class="member-slot" style="display:none;">
+                    <div class="member-photo"><span class="member-initials" style="font-size:.8rem;color:var(--gray);">—</span></div>
+                    <div class="member-info">
+                      <div class="member-name">Aucun soldat pour l'instant</div>
+                      <div class="member-discord">—</div><div class="member-age">—</div>
+                    </div>
+                  </div>
+
+                  <!--
+                  ════════════════════════════════════════
+                  AJOUTER UN USH : copier-coller ici ↓
+                  ════════════════════════════════════════
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <img src="photos/nom-fichier.jpg" alt="Nom RP">
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Prénom Nom RP</div>
+                      <div class="member-discord">@pseudo_discord</div>
+                      <div class="member-age">Âge RP : XX ans</div>
+                    </div>
+                  </div>
+                  -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev">←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next">→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+      <div class="rank-connector"></div>
+
+      <!-- ══════════════════════════════════════════
+           ANËT — variable
+           ══════════════════════════════════════════ -->
+      <div class="rank-row" style="width:60%;margin-left:auto;margin-right:auto;">
+        <div class="rank-header">
+          <div class="rank-left">
+            <div class="rank-icon">🌱</div>
+            <div>
+              <div class="rank-name" style="color:#4a4a4a;">ANËT</div>
+              <div class="rank-title">Associé / Probatoire — effectif variable</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div class="rank-badge" style="border-color:var(--border);color:#4a4a4a;">
+              <div class="dot" style="background:#4a4a4a;border-radius:50%;width:5px;height:5px;"></div>
+              Probatoire
+            </div>
+            <div class="rank-toggle"></div>
+          </div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-sep" style="background:linear-gradient(90deg,#4a4a4a,transparent);"></div>
+          <p class="rank-desc">Première étape. L'ANËT est en période d'observation. Rien n'est acquis — tout est à prouver. La durée de cette phase dépend entièrement de lui.</p>
+          <div class="rank-cols">
+            <div>
+              <div class="rank-sub-label" style="color:#777;">Responsabilités</div>
+              <ul class="rank-list">
+                <li>Faire ses preuves par l'acte et l'attitude</li>
+                <li>Observer les codes et règles de la Familja</li>
+                <li>Rester discret, disponible, respectueux</li>
+                <li>Mériter la confiance de ses supérieurs</li>
+              </ul>
+            </div>
+            <div>
+              <div class="rank-sub-label" style="color:#777;">Accès au rang</div>
+              <p style="font-size:.75rem;color:var(--gray-light);line-height:1.75;">Accès sur candidature acceptée.</p>
+            </div>
+          </div>
+
+          <!-- MEMBRES -->
+          <div class="rank-members">
+            <div class="rank-members-label">Membres du rang</div>
+            <div class="member-slider-wrap" data-slider>
+              <div class="member-slider-track-wrap">
+                <div class="member-slider-track">
+
+                  <!-- ► POSTE VACANT (placeholder) -->
+                  <div class="member-slot">
+                    <div class="member-photo"><span class="member-initials" style="font-size:.8rem;color:var(--gray);">—</span></div>
+                    <div class="member-info">
+                      <div class="member-name">Aucun associé pour l'instant</div>
+                      <div class="member-discord">—</div><div class="member-age">—</div>
+                    </div>
+                  </div>
+
+                  <!--
+                  ════════════════════════════════════════
+                  AJOUTER UN ANËT : copier-coller ici ↓
+                  ════════════════════════════════════════
+                  <div class="member-card">
+                    <div class="member-photo">
+                      <img src="photos/nom-fichier.jpg" alt="Nom RP">
+                      <span class="member-initials">?B</span>
+                    </div>
+                    <div class="member-info">
+                      <div class="member-name">Prénom Nom RP</div>
+                      <div class="member-discord">@pseudo_discord</div>
+                      <div class="member-age">Âge RP : XX ans</div>
+                    </div>
+                  </div>
+                  -->
+
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button class="slider-btn prev">←</button>
+                <div class="slider-dots"></div>
+                <button class="slider-btn next">→</button>
+                <span class="slider-count"></span>
+              </div>
+            </div>
+          </div>
+          <!-- /MEMBRES -->
+
+        </div>
+      </div>
+
+    </div><!-- /hierarchy -->
+  </div>
+</section>
+
+<!-- COMMANDEMENTS -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Règles internes</span>
+      <h2 class="section-title">Les Commandements de la Famille</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-2" style="max-width:880px;margin:0 auto;">
+      <div class="card reveal delay-1">
+        <div class="commandement">
+          <div class="cmd-num">I</div>
+          <div>
+            <div class="cmd-rule">La Besa avant tout</div>
+            <div class="cmd-text">Le silence est la première règle. On ne parle pas des affaires de la Familja en dehors des cercles autorisés, jamais.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-2">
+        <div class="commandement">
+          <div class="cmd-num">II</div>
+          <div>
+            <div class="cmd-rule">Respect de la hiérarchie</div>
+            <div class="cmd-text">Les ordres viennent du haut. Aucune initiative ne doit contredire les directives du commandement, sous aucun prétexte.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-1">
+        <div class="commandement">
+          <div class="cmd-num">III</div>
+          <div>
+            <div class="cmd-rule">Protection des membres</div>
+            <div class="cmd-text">Un membre de la Familja est intouchable. L'attaquer, c'est attaquer la famille entière. La réponse sera collective.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-2">
+        <div class="commandement">
+          <div class="cmd-num">IV</div>
+          <div>
+            <div class="cmd-rule">Interdiction de trahison</div>
+            <div class="cmd-text">La trahison est le seul crime impardonnable. Elle est punie sans appel, sans second chance, sans exception.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-1">
+        <div class="commandement">
+          <div class="cmd-num">V</div>
+          <div>
+            <div class="cmd-rule">Discrétion opérationnelle</div>
+            <div class="cmd-text">Aucune opération n'est discutée publiquement. Les détails restent entre les membres directement concernés.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-2">
+        <div class="commandement">
+          <div class="cmd-num">VI</div>
+          <div>
+            <div class="cmd-rule">Mérite avant le titre</div>
+            <div class="cmd-text">Le rang ne fait pas le respect. C'est l'action, la loyauté et le sacrifice qui définissent un homme de la Familja.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;">
+  <div class="container-sm reveal">
+    <p style="font-family:var(--cormorant);font-style:italic;font-size:1.4rem;color:rgba(242,240,235,.45);margin-bottom:.75rem;">"Njoh vendin tënd, dhe do ta gjesh të respektuar."</p>
+    <p style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:2.5rem;">Connais ta place, et tu la trouveras respectée.</p>
+    <div class="hero-buttons" style="justify-content:center;">
+      <a href="territoire.html" class="btn btn-red">Notre Territoire</a>
+      <a href="recrutement.html" class="btn btn-gold">Rejoindre</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:1rem;">
+        <div class="logo-box"><span>A</span></div>
+        <div class="logo-text"><strong>FAMILJA BERISHA</strong><small>Los Santos</small></div>
+      </div>
+      <p style="font-size:.73rem;color:var(--gray-light);line-height:1.8;margin-top:.75rem;">Organisation d'élite au cœur de Los Santos.<br>Loyauté. Honneur. Discrétion.</p>
+    </div>
+    <div>
+      <div class="footer-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="hierarchie.html">Hiérarchie</a></li>
+        <li><a href="territoire.html">Territoire</a></li>
+        <li><a href="histoire.html">Valeurs & Code</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">La Devise</div>
+      <div class="footer-quote">
+        <p>"Ai që tradhëton familjen,tradhëton veten."</p>
+        <small>Celui qui trahit sa famille se trahit lui-même.</small>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Familja Berisha — Tous droits réservés</p>
+    <div class="footer-pulse"><div class="dot"></div><p>Présentation RP — Fiction uniquement</p></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+/* ─── Member Slider ───────────────────────────────── */
+document.querySelectorAll('[data-slider]').forEach(wrap => {
+  const track   = wrap.querySelector('.member-slider-track');
+  const cards   = [...track.children];
+  const prev    = wrap.querySelector('.slider-btn.prev');
+  const next    = wrap.querySelector('.slider-btn.next');
+  const dotsEl  = wrap.querySelector('.slider-dots');
+  const countEl = wrap.querySelector('.slider-count');
+  let   current = 0;
+
+  /* Generate dots */
+  cards.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => go(i));
+    dotsEl.appendChild(d);
+  });
+
+  function go(n) {
+    current = Math.max(0, Math.min(n, cards.length - 1));
+    track.style.transform = `translateX(-${100 * current}%)`;
+    prev.disabled = current === 0;
+    next.disabled = current === cards.length - 1;
+    dotsEl.querySelectorAll('.slider-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current)
+    );
+    if (countEl) countEl.textContent = cards.length > 1
+      ? `${current + 1} / ${cards.length}` : '';
+  }
+
+  /* Hide nav if single card */
+  if (cards.length <= 1) {
+    prev.style.display = 'none';
+    next.style.display = 'none';
+    dotsEl.style.display = 'none';
+  } else {
+    prev.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+  }
+
+  go(0);
+});
+</script>
+
+</body>
+</html>

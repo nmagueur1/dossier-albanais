@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histoire & Origines — Famille Berisha</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ═══════════════════════════════════════════════
+       LORE PAGE — styles spécifiques
+    ═══════════════════════════════════════════════ */
+
+    /* ── Lore intro ── */
+    .lore-intro {
+      max-width: 820px; margin: 0 auto;
+      font-family: var(--cormorant);
+      font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+      font-style: italic;
+      color: rgba(242,240,235,.65);
+      line-height: 1.9;
+      text-align: center;
+      border-left: none;
+    }
+    .lore-body p {
+      font-size: .8rem; color: var(--gray-light); line-height: 1.95; margin-bottom: 1.2rem;
+    }
+    .lore-highlight {
+      border-left: 2px solid var(--red);
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      background: rgba(139,0,0,.04);
+    }
+    .lore-highlight p {
+      font-family: var(--cormorant);
+      font-size: 1.15rem !important;
+      font-style: italic;
+      color: rgba(242,240,235,.8) !important;
+      margin: 0 !important;
+      line-height: 1.7 !important;
+    }
+
+    /* ── Piliers Valeurs ── */
+    .valeur-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 600px) { .valeur-grid { grid-template-columns: 1fr; } }
+    .valeur-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    .valeur-block::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .valeur-block:hover { border-color: rgba(139,0,0,.35); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,.7); }
+    .valeur-block:hover::before { transform: scaleX(1); }
+    .valeur-block-num {
+      font-family: var(--serif); font-size: 4rem; font-weight: 900;
+      color: rgba(139,0,0,.08); position: absolute; top: .5rem; right: 1rem;
+      line-height: 1; pointer-events: none;
+      transition: color .4s;
+    }
+    .valeur-block:hover .valeur-block-num { color: rgba(139,0,0,.14); }
+    .valeur-block-icon { font-size: 1.6rem; margin-bottom: .85rem; }
+    .valeur-block-name {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+      margin-bottom: .4rem; transition: color .3s;
+    }
+    .valeur-block:hover .valeur-block-name { color: var(--gold); }
+    .valeur-block-sub {
+      font-size: .57rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--red); margin-bottom: .85rem;
+    }
+    .valeur-block-text { font-size: .77rem; color: var(--gray-light); line-height: 1.8; }
+
+    /* ── Organisation ── */
+    .org-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2.5rem 2rem; position: relative; overflow: hidden;
+    }
+    .org-card-wm {
+      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+      font-family: var(--serif); font-weight: 900;
+      font-size: clamp(5rem, 12vw, 9rem);
+      color: rgba(139,0,0,.04); pointer-events: none; line-height: 1;
+    }
+    .org-ranks {
+      display: flex; flex-direction: column; gap: .5rem; margin-top: 1.5rem;
+    }
+    .org-rank {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: .85rem 1.25rem;
+      border: 1px solid var(--border);
+      transition: all .3s;
+      cursor: default;
+    }
+    .org-rank:hover { border-color: rgba(139,0,0,.4); background: rgba(139,0,0,.04); }
+    .org-rank-level {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+      color: rgba(201,168,76,.25); line-height: 1; flex-shrink: 0; min-width: 2.5rem;
+      transition: color .3s;
+    }
+    .org-rank:hover .org-rank-level { color: rgba(201,168,76,.55); }
+    .org-rank-info { flex: 1; }
+    .org-rank-name { font-family: var(--serif); font-size: .95rem; font-weight: 600; }
+    .org-rank-role { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-light); margin-top: .15rem; }
+    .org-rank-badge {
+      font-size: .52rem; letter-spacing: .2em; text-transform: uppercase;
+      border: 1px solid rgba(139,0,0,.3); color: var(--red);
+      padding: .2rem .6rem; flex-shrink: 0;
+    }
+
+    /* ── Territoire card ── */
+    .terr-bloc {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2.5rem; position: relative; overflow: hidden;
+    }
+    .terr-bloc .corner { position: absolute; width: 16px; height: 16px; border-color: var(--gold); border-style: solid; }
+    .terr-bloc .corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+    .terr-bloc .corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .terr-bloc .corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .terr-bloc .corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+    .terr-bloc-wm {
+      position: absolute; right: 1.5rem; bottom: 1rem;
+      font-family: var(--serif); font-weight: 900; font-size: 5rem;
+      color: rgba(201,168,76,.04); pointer-events: none; line-height: 1;
+    }
+    .terr-tag {
+      display: inline-block; font-size: .55rem; letter-spacing: .3em;
+      text-transform: uppercase; border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold); padding: .25rem .8rem; margin-bottom: 1rem;
+    }
+    .terr-title { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.4rem); font-weight: 700; margin-bottom: 1.25rem; }
+    .terr-sep { height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin-bottom: 1.5rem; }
+    .terr-body { font-size: .8rem; color: var(--gray-light); line-height: 1.9; margin-bottom: 1.75rem; }
+    .terr-list { display: flex; flex-direction: column; gap: .45rem; }
+    .terr-list li {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .75rem; color: var(--gray-light);
+    }
+    .terr-list li::before {
+      content: ''; display: block; width: 14px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════
+       TIMELINE
+    ═══════════════════════════════════════════════ */
+    .timeline-wrap {
+      position: relative; max-width: 900px; margin: 0 auto; padding: 2rem 0;
+    }
+    /* Central line */
+    .timeline-wrap::before {
+      content: '';
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(139,0,0,.4) 8%, rgba(139,0,0,.4) 92%, transparent);
+      transform: translateX(-50%);
+    }
+    @media (max-width: 700px) {
+      .timeline-wrap::before { left: 1.5rem; }
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 3.5rem;
+      position: relative;
+      align-items: start;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+
+    /* Alternance : pair → texte à droite, impair → texte à gauche */
+    .tl-item.right .tl-content { grid-column: 3; grid-row: 1; text-align: left; }
+    .tl-item.right .tl-empty   { grid-column: 1; grid-row: 1; }
+
+    .tl-item.left .tl-content  { grid-column: 1; grid-row: 1; text-align: right; }
+    .tl-item.left .tl-empty    { grid-column: 3; grid-row: 1; }
+
+    .tl-center { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; padding-top: .5rem; }
+
+    /* Dot + year */
+    .tl-dot {
+      width: 14px; height: 14px;
+      border: 2px solid var(--red);
+      background: var(--black);
+      transform: rotate(45deg);
+      position: relative; z-index: 2;
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+    .tl-item:hover .tl-dot { background: var(--red); box-shadow: 0 0 18px rgba(139,0,0,.6); }
+    .tl-year {
+      font-family: var(--serif); font-weight: 700;
+      font-size: .75rem; letter-spacing: .15em;
+      color: var(--gold); margin-top: .6rem;
+      text-align: center; white-space: nowrap;
+    }
+
+    /* Content card */
+    .tl-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.5rem 1.75rem;
+      transition: all .4s cubic-bezier(.25,.46,.45,.94);
+      position: relative; overflow: hidden;
+    }
+    .tl-item:hover .tl-card {
+      border-color: rgba(139,0,0,.35);
+      box-shadow: 0 16px 50px rgba(0,0,0,.7), 0 0 25px rgba(139,0,0,.08);
+      transform: translateY(-2px);
+    }
+    .tl-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,0,0,.4), transparent);
+      transform: scaleX(0); transform-origin: center;
+      transition: transform .4s;
+    }
+    .tl-item:hover .tl-card::after { transform: scaleX(1); }
+    .tl-item.right .tl-card::before {
+      content: '';
+      position: absolute; left: -1px; top: 1.2rem;
+      width: 0; height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-right: 7px solid var(--border);
+    }
+    .tl-item.left .tl-card::before {
+      content: '';
+      position: absolute; right: -1px; top: 1.2rem;
+      width: 0; height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 7px solid var(--border);
+    }
+    .tl-label {
+      font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--red); margin-bottom: .5rem;
+    }
+    .tl-title {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+      margin-bottom: .65rem; transition: color .3s;
+    }
+    .tl-item:hover .tl-title { color: var(--gold); }
+    .tl-text { font-size: .76rem; color: var(--gray-light); line-height: 1.82; }
+
+    /* Mobile : tout empilé à gauche */
+    @media (max-width: 700px) {
+      .timeline-wrap { padding-left: 3.5rem; }
+      .tl-item { grid-template-columns: 0 60px 1fr; }
+      .tl-item.right .tl-content,
+      .tl-item.left .tl-content  { grid-column: 3; text-align: left; }
+      .tl-item.right .tl-empty,
+      .tl-item.left .tl-empty    { display: none; }
+      .tl-center { grid-column: 2; position: absolute; left: -3.5rem; }
+      .tl-item.left .tl-card::before,
+      .tl-item.right .tl-card::before {
+        display: none;
+      }
+    }
+
+    /* ── End cap de la timeline ── */
+    .timeline-end {
+      display: flex; flex-direction: column; align-items: center; gap: .75rem;
+      margin-top: 1.5rem; position: relative; z-index: 2;
+    }
+    .timeline-end-dot {
+      width: 20px; height: 20px;
+      border: 2px solid var(--gold); background: var(--black);
+      transform: rotate(45deg);
+      box-shadow: 0 0 20px rgba(201,168,76,.3);
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%,100% { box-shadow: 0 0 10px rgba(201,168,76,.2); }
+      50% { box-shadow: 0 0 30px rgba(201,168,76,.5); }
+    }
+    .timeline-end-label {
+      font-size: .58rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-box"><span>A</span></div>
+    <div class="logo-text"><strong>Famille</strong><small>Berisha</small></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="histoire.html" class="active">Histoire</a>
+    <a href="hierarchie.html">Hiérarchie</a>
+    <a href="territoire.html">Territoire</a>
+    <a href="histoire.html">Valeurs</a>
+    <a href="recrutement.html">Recrutement</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="recrutement.html" class="nav-cta btn">Rejoindre</a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="histoire.html">Histoire</a>
+  <a href="hierarchie.html">Hiérarchie</a>
+  <a href="territoire.html">Territoire</a>
+  <a href="histoire.html">Valeurs</a>
+  <a href="recrutement.html">Recrutement</a>
+  <a href="contact.html">Contact</a>
+  <a href="recrutement.html" class="btn btn-red" style="margin-top:1rem;">Rejoindre la Famille</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="dot-grid"></div>
+  <div class="page-hero-content">
+    <span class="section-label" style="animation:fadeUp .7s ease .2s both;display:block;">Racines & Origines</span>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);letter-spacing:.04em;animation:fadeUp .7s ease .4s both;">Histoire de la Famille</h1>
+    <div class="divider-gold" style="animation:fadeIn .7s ease .6s both;"></div>
+    <p style="font-size:.78rem;color:var(--gray-light);margin:.85rem auto 0;max-width:540px;line-height:1.8;animation:fadeUp .7s ease .7s both;">
+      De l'Albanie à Rockwood — trente ans de loyauté, d'épreuves et d'ascension.
+    </p>
+  </div>
+  <div class="page-hero-bottom"></div>
+</section>
+
+<!-- ── INTRO LORE ── -->
+<section class="section">
+  <div class="container-sm">
+    <div class="reveal" style="text-align:center;margin-bottom:4rem;">
+      <p class="lore-intro">
+        "Une famille ne se construit pas sur la chance.<br>
+        Elle se bâtit sur le sang, la sueur et la parole tenue."
+      </p>
+    </div>
+
+    <div class="split reveal" style="gap:4rem;">
+      <div class="split-text">
+        <span class="section-label">Les origines</span>
+        <h2 class="section-title">Née de l'ombre<br><span class="gold">d'Albanie</span></h2>
+        <div class="divider divider-left" style="margin-bottom:2rem;"></div>
+        <div class="lore-body">
+          <p>La Famiglia Berisha trouve ses racines en Albanie, créée par des membres ambitieux de la diaspora cherchant à bâtir une famille puissante, respectée et discrète. Là où d'autres voyaient des obstacles, ses fondateurs voyaient des opportunités — et la volonté de les saisir.</p>
+          <p>Très tôt, la Famiglia a combiné business légaux et opérations discrètes, s'imposant progressivement dans le paysage local et dans la diaspora européenne. Chaque décision, chaque alliance, chaque risque était calculé avec la précision d'un horloger.</p>
+          <div class="lore-highlight">
+            <p>"Chaque membre de la Famiglia doit prouver sa valeur avant d'être officiellement accueilli, respectant les valeurs fondamentales de loyauté, honneur et mérite."</p>
+          </div>
+          <p>On n'entre pas dans la Famille par accident, ni par faveur. On y entre parce qu'on l'a mérité — et parce que la Famille a jugé que l'on en était digne.</p>
+        </div>
+      </div>
+
+      <div class="reveal from-left" style="position:relative;">
+        <div class="omerta-card">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="omerta-bg">1991</div>
+          <div class="omerta-icon">🦅</div>
+          <div class="omerta-name">Fondée en Albanie</div>
+          <div class="divider-gold" style="margin:1rem auto;"></div>
+          <div class="omerta-sub" style="margin-bottom:1rem;">Par les visionnaires<br>de la diaspora</div>
+          <div style="display:flex;flex-direction:column;gap:.5rem;text-align:left;margin-top:1.25rem;border-top:1px solid var(--border);padding-top:1.25rem;">
+            <div style="display:flex;align-items:center;gap:.75rem;font-size:.7rem;color:var(--gray-light);">
+              <span style="width:10px;height:1px;background:var(--red);flex-shrink:0;display:block;"></span>
+              Business légaux & opérations discrètes
+            </div>
+            <div style="display:flex;align-items:center;gap:.75rem;font-size:.7rem;color:var(--gray-light);">
+              <span style="width:10px;height:1px;background:var(--red);flex-shrink:0;display:block;"></span>
+              Diaspora albanaise en Europe
+            </div>
+            <div style="display:flex;align-items:center;gap:.75rem;font-size:.7rem;color:var(--gray-light);">
+              <span style="width:10px;height:1px;background:var(--red);flex-shrink:0;display:block;"></span>
+              Intelligence stratégique avant la force
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:-8px;right:-8px;left:8px;top:8px;background:var(--card);border:1px solid rgba(139,0,0,.12);z-index:-1;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALEURS ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Ce qui nous définit</span>
+      <h2 class="section-title">Valeurs & Traditions</h2>
+      <div class="divider-gold"></div>
+      <p style="margin-top:1.25rem;font-size:.78rem;color:var(--gray-light);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8;">
+        Quatre principes gravés dans le marbre de la Famille. Ils ne s'interprètent pas — ils s'incarnent.
+      </p>
+    </div>
+    <div class="valeur-grid">
+      <div class="valeur-block reveal delay-1">
+        <div class="valeur-block-num">01</div>
+        <div class="valeur-block-icon">🤝</div>
+        <div class="valeur-block-name">Loyauté</div>
+        <div class="valeur-block-sub">Le lien absolu</div>
+        <p class="valeur-block-text">La trahison est impardonnable. Qui rompt ce lien rompt tout ce qu'il est. La loyauté n'est pas une vertu parmi d'autres — c'est le fondement sur lequel tout repose.</p>
+      </div>
+      <div class="valeur-block reveal delay-2">
+        <div class="valeur-block-num">02</div>
+        <div class="valeur-block-icon">⚖️</div>
+        <div class="valeur-block-name">Honneur</div>
+        <div class="valeur-block-sub">La réputation comme armure</div>
+        <p class="valeur-block-text">Chaque action reflète la réputation et le prestige de la Famiglia. Un homme sans honneur est une menace pour tous. La Famille exige du rang de la conduite.</p>
+      </div>
+      <div class="valeur-block reveal delay-3">
+        <div class="valeur-block-num">03</div>
+        <div class="valeur-block-icon">👑</div>
+        <div class="valeur-block-name">Mérite</div>
+        <div class="valeur-block-sub">Rien sans l'effort</div>
+        <p class="valeur-block-text">Promotions et respect se gagnent par les actes. Aucun titre n'est offert. Le mérite est le seul critère qui vaille — le reste n'est que bruit.</p>
+      </div>
+      <div class="valeur-block reveal delay-4">
+        <div class="valeur-block-num">04</div>
+        <div class="valeur-block-icon">🤫</div>
+        <div class="valeur-block-name">Discrétion</div>
+        <div class="valeur-block-sub">L'art de l'invisible</div>
+        <p class="valeur-block-text">Les affaires restent internes et ne sont jamais exposées aux rivaux. L'ombre est notre alliée. Ce que les autres ne voient pas ne peut être combattu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ORGANISATION ── -->
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div class="split-text reveal from-right">
+        <span class="section-label">Hiérarchie & Structure</span>
+        <h2 class="section-title">Une organisation<br><span class="gold">bâtie sur l'ordre</span></h2>
+        <div class="divider divider-left" style="margin-bottom:2rem;"></div>
+        <div class="lore-body">
+          <p>La famille est dirigée par le <strong style="color:var(--white);font-weight:500;">Kryetar</strong>, assisté du <strong style="color:var(--white);font-weight:500;">Nënkryetar</strong> et du <strong style="color:var(--white);font-weight:500;">Këshilltar</strong>. Ensemble, ils forment la tête pensante de la Famiglia.</p>
+          <p>Les <strong style="color:var(--white);font-weight:500;">Kapiten</strong> et <strong style="color:var(--white);font-weight:500;">Ushtar</strong> assurent protection, exécution des missions et gestion des affaires au quotidien.</p>
+          <p>Les <strong style="color:var(--white);font-weight:500;">Anëtar</strong> représentent la base, l'âme et la force vive de la Famiglia — sans eux, rien n'existe.</p>
+        </div>
+      </div>
+
+      <div class="org-card reveal from-left">
+        <div class="org-card-wm">B</div>
+        <span class="section-label" style="margin-bottom:1.25rem;display:block;">Échelons de la Famiglia</span>
+        <div class="org-ranks">
+          <div class="org-rank">
+            <div class="org-rank-level">I</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Kryetar</div>
+              <div class="org-rank-role">Chef suprême de la Famiglia</div>
+            </div>
+            <div class="org-rank-badge">Direction</div>
+          </div>
+          <div style="width:1px;height:10px;background:linear-gradient(to bottom,rgba(139,0,0,.3),transparent);margin:0 auto;"></div>
+          <div class="org-rank">
+            <div class="org-rank-level">II</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Nënkryetar</div>
+              <div class="org-rank-role">Bras droit du Chef</div>
+            </div>
+            <div class="org-rank-badge">Direction</div>
+          </div>
+          <div style="width:1px;height:10px;background:linear-gradient(to bottom,rgba(139,0,0,.3),transparent);margin:0 auto;"></div>
+          <div class="org-rank">
+            <div class="org-rank-level">III</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Këshilltar</div>
+              <div class="org-rank-role">Conseiller stratégique</div>
+            </div>
+            <div class="org-rank-badge">Conseil</div>
+          </div>
+          <div style="width:1px;height:10px;background:linear-gradient(to bottom,rgba(139,0,0,.3),transparent);margin:0 auto;"></div>
+          <div class="org-rank">
+            <div class="org-rank-level">IV</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Kapiten</div>
+              <div class="org-rank-role">Capitaine — Gestion des affaires</div>
+            </div>
+            <div class="org-rank-badge">Opérationnel</div>
+          </div>
+          <div style="width:1px;height:10px;background:linear-gradient(to bottom,rgba(139,0,0,.3),transparent);margin:0 auto;"></div>
+          <div class="org-rank">
+            <div class="org-rank-level">V</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Ushtar</div>
+              <div class="org-rank-role">Soldat — Protection & Exécution</div>
+            </div>
+            <div class="org-rank-badge">Terrain</div>
+          </div>
+          <div style="width:1px;height:10px;background:linear-gradient(to bottom,rgba(139,0,0,.3),transparent);margin:0 auto;"></div>
+          <div class="org-rank">
+            <div class="org-rank-level">VI</div>
+            <div class="org-rank-info">
+              <div class="org-rank-name">Anëtar</div>
+              <div class="org-rank-role">Membre — L'âme de la Famiglia</div>
+            </div>
+            <div class="org-rank-badge">Base</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TERRITOIRE ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Fief & Influence</span>
+      <h2 class="section-title">L'Île Rockwood</h2>
+      <div class="divider-gold"></div>
+    </div>
+    <div class="terr-bloc reveal" style="max-width:820px;margin:0 auto;">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="terr-bloc-wm">🏝️</div>
+      <div class="terr-tag">Nouveau territoire — USA</div>
+      <div class="terr-title">Le Nouveau Fief de la Famiglia Berisha</div>
+      <div class="terr-sep"></div>
+      <p class="terr-body">L'île Rockwood sera le nouveau fief de la Famiglia Berisha. Chaque quartier sera contrôlé avec précision, et les activités mêleront influence, commerce discret et protection — toujours planifiées avec intelligence plutôt que par force brute.</p>
+      <p class="terr-body" style="margin-bottom:1.75rem;">La Famiglia ne conquiert pas par la violence aveugle. Elle s'installe, elle s'intègre, elle s'impose. L'intelligence avant la force — toujours.</p>
+      <ul class="terr-list">
+        <li>Contrôle précis de chaque quartier de l'île</li>
+        <li>Commerce discret & influence économique</li>
+        <li>Protection organisée des membres et alliés</li>
+        <li>Expansion stratégique vers le marché nord-américain</li>
+        <li>Intelligence & planification — jamais la force brute</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Chronologie</span>
+      <h2 class="section-title">Trente ans d'ascension</h2>
+      <div class="divider-gold"></div>
+      <p style="margin-top:1.25rem;font-size:.78rem;color:var(--gray-light);max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8;">
+        De la fondation en Albanie à l'installation à Rockwood — chaque étape, chaque épreuve, chaque victoire.
+      </p>
+    </div>
+
+    <div class="timeline-wrap">
+
+      <!-- 1991 -->
+      <div class="tl-item right reveal delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1991</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Acte fondateur</div>
+            <div class="tl-title">Fondation en Albanie</div>
+            <p class="tl-text">La Famiglia Berisha est créée par des anciens de la diaspora, visionnaires et ambitieux. L'objectif est clair : construire une famille puissante, respectée et discrète. Ce qui commence comme une promesse entre hommes d'honneur deviendra une institution.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1995 -->
+      <div class="tl-item left reveal delay-2">
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Premiers pas</div>
+            <div class="tl-title">Premiers business</div>
+            <p class="tl-text">Mise en place de commerces légaux et investissements locaux. Début des opérations discrètes pour asseoir influence et capital. La Famiglia apprend à construire sur deux piliers : le visible et l'invisible.</p>
+          </div>
+        </div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1995</div>
+        </div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- 2000 -->
+      <div class="tl-item right reveal delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2000</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Structuration</div>
+            <div class="tl-title">Consolidation</div>
+            <p class="tl-text">Expansion des contacts dans la diaspora albanaise en Europe. La première hiérarchie formelle est établie : Kryetar, Nënkryetar, Këshilltar. La Famiglia cesse d'être un cercle — elle devient une organisation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2005 -->
+      <div class="tl-item left reveal delay-2">
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Épreuve du feu</div>
+            <div class="tl-title">Crises & Épreuves</div>
+            <p class="tl-text">Conflits internes et menaces de familles rivales. Les moments difficiles révèlent ce dont la Famiglia est faite. Elle apprend la valeur réelle de la loyauté et du mérite, renforce sa cohésion et grave ses traditions dans le marbre.</p>
+          </div>
+        </div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2005</div>
+        </div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- 2010 -->
+      <div class="tl-item right reveal delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2010</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Reconnaissance</div>
+            <div class="tl-title">Réputation Établie</div>
+            <p class="tl-text">Berisha devient reconnue pour sa discipline et son intelligence stratégique. Les alliances solides se multiplient avec d'autres acteurs européens. La Famiglia n'est plus une promesse — c'est une réalité que les autres respectent.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2015 -->
+      <div class="tl-item left reveal delay-2">
+        <div class="tl-content">
+          <div class="tl-card">
+            <div class="tl-label">Nouveau regard</div>
+            <div class="tl-title">Premiers Regards vers l'Étranger</div>
+            <p class="tl-text">Exploration du marché nord-américain. Des missions discrètes sont menées, des hommes de confiance envoyés en reconnaissance sur le territoire qui deviendra Rockwood. L'horizon s'élargit — la Famiglia vise plus loin.</p>
+          </div>
+        </div>
+        <div class="tl-center">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2015</div>
+        </div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="tl-item right reveal delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-center">
+          <div class="tl-dot" style="border-color:var(--gold);"></div>
+          <div class="tl-year" style="color:var(--gold);font-size:.8rem;">2025</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-card" style="border-color:rgba(201,168,76,.25);">
+            <div class="tl-label" style="color:var(--gold);">Présent</div>
+            <div class="tl-title">Décision de Migrer</div>
+            <p class="tl-text">La Famiglia prend la décision historique de s'installer sur l'île Rockwood, USA. Trente ans après sa fondation, elle pose ses valises sur un nouveau continent pour y étendre ses affaires et asseoir sa domination. Un nouveau chapitre commence.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- End cap -->
+      <div class="timeline-end reveal">
+        <div class="timeline-end-dot"></div>
+        <div class="timeline-end-label">Rockwood — Aujourd'hui</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="omerta-full reveal">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="omerta-full-bg">BERISHA</div>
+      <blockquote>
+        <p>"Familia mbi gjithçka —<br>gjithmonë bashkë."</p>
+        <footer>La Famille avant tout — toujours ensemble.</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section" style="text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,0,0,.06) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="container-sm reveal">
+    <span class="section-label">L'avenir s'écrit maintenant</span>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Rejoignez<br><span class="gold">notre histoire</span></h2>
+    <p style="font-size:.8rem;color:var(--gray-light);max-width:500px;margin:0 auto 2.5rem;line-height:1.9;">
+      Trente ans de fondations solides. Un nouveau territoire. Et vous, peut-être, pour écrire les prochaines pages.
+    </p>
+    <div class="hero-buttons">
+      <a href="recrutement.html" class="btn btn-red">Processus de Recrutement</a>
+      <a href="hierarchie.html" class="btn btn-gold">Voir la Hiérarchie</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:1rem;">
+        <div class="logo-box"><span>A</span></div>
+        <div class="logo-text"><strong>Famille BERISHA</strong><small>Rockwood — USA</small></div>
+      </div>
+      <p style="font-size:.73rem;color:var(--gray-light);line-height:1.8;margin-top:.75rem;">Organisation d'élite au cœur de Rockwood.<br>Loyauté. Honneur. Discrétion.</p>
+    </div>
+    <div>
+      <div class="footer-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="histoire.html">Histoire</a></li>
+        <li><a href="hierarchie.html">Hiérarchie</a></li>
+        <li><a href="territoire.html">Territoire</a></li>
+        <li><a href="histoire.html">Valeurs & Code</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">La Devise</div>
+      <div class="footer-quote">
+        <p>"Ai që tradhëton familjen,<br>tradhëton veten."</p>
+        <small>Kush tradhëton familjen, tradhëton vetveten.</small>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+        <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);">Serveur GTA RP — Rockwood Island</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Famille Berisha — Tous droits réservés</p>
+    <div class="footer-pulse"><div class="dot"></div><p>Présentation RP — Fiction uniquement</p></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

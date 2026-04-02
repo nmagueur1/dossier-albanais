@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Annexes — Famille Berisha</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; max-width:860px; margin:0 auto; }
+    @media(max-width:640px){ .contact-grid{grid-template-columns:1fr;} }
+    .faq-item { border-bottom:1px solid var(--border); padding:1.5rem 0; cursor:pointer; }
+    .faq-item:first-child { border-top:1px solid var(--border); }
+    .faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .faq-q-text { font-family:var(--serif); font-size:1rem; font-weight:500; transition:color .3s; }
+    .faq-item:hover .faq-q-text, .faq-item.open .faq-q-text { color:var(--gold); }
+    .faq-icon { width:22px; height:22px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .3s; }
+    .faq-item.open .faq-icon { border-color:var(--red); transform:rotate(45deg); }
+    .faq-icon::before { content:''; display:block; width:8px; height:1px; background:var(--gray-light); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; font-size:.78rem; color:var(--gray-light); line-height:1.85; }
+    .faq-item.open .faq-a { max-height:300px; padding-top:.85rem; }
+    .link-card { background:var(--card); border:1px solid var(--border); padding:1.75rem; display:flex; align-items:flex-start; gap:1.25rem; transition:all .35s; }
+    .link-card:hover { border-color:rgba(201,168,76,.3); transform:translateY(-3px); }
+    .link-card-icon { font-size:1.5rem; flex-shrink:0; }
+    .link-card-label { font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(--red); margin-bottom:.3rem; }
+    .link-card-name { font-family:var(--serif); font-size:1rem; font-weight:600; margin-bottom:.35rem; }
+    .link-card-sub { font-size:.72rem; color:var(--gray-light); line-height:1.7; }
+    .link-card-arrow { margin-top:.5rem; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><div class="logo-box"><span>A</span></div><div class="logo-text"><strong>FAMILJA</strong><small>Berisha</small></div></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a><a href="hierarchie.html">Hiérarchie</a>
+    <a href="territoire.html">Territoire</a><a href="histoire.html">Valeurs</a>
+    <a href="recrutement.html">Recrutement</a><a href="contact.html">Contact</a>
+  </div>
+  <a href="recrutement.html" class="nav-cta btn">Rejoindre</a>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a><a href="hierarchie.html">Hiérarchie</a>
+  <a href="territoire.html">Territoire</a><a href="histoire.html">Valeurs</a>
+  <a href="recrutement.html">Recrutement</a><a href="contact.html">Contact</a>
+  <a href="recrutement.html" class="btn btn-red" style="margin-top:1rem;">Rejoindre</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="dot-grid"></div>
+  <div class="page-hero-content">
+    <span class="section-label" style="animation:fadeUp .7s ease .2s both;display:block;">Nous joindre</span>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);letter-spacing:.04em;animation:fadeUp .7s ease .4s both;">Contact & Annexes</h1>
+    <div class="divider-gold" style="animation:fadeIn .7s ease .6s both;"></div>
+    <p style="font-size:.78rem;color:var(--gray-light);margin:.75rem auto 0;line-height:1.8;animation:fadeUp .7s ease .7s both;">Chaque contact commence par le respect. Tout le reste suit.</p>
+  </div>
+  <div class="page-hero-bottom"></div>
+</section>
+
+<!-- CONTACTS CARDS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Canaux officiels</span>
+      <h2 class="section-title">Nous joindre</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal delay-1">
+        <div class="contact-card-icon">💬</div>
+        <div class="contact-card-label">Contact principal</div>
+        <div class="contact-card-name">Discord de la Famille</div>
+        <div class="contact-card-sub">Le serveur Discord est le canal de communication officiel hors-jeu. Candidatures, informations et organisation y transitent. Accès sur invitation uniquement après contact initial.</div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <span style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);">Sur invitation — contacter un membre IG d'abord</span>
+        </div>
+      </div>
+      <div class="contact-card reveal delay-2">
+        <div class="contact-card-icon">🎮</div>
+        <div class="contact-card-label">In-Game (RP)</div>
+        <div class="contact-card-name">Contact en jeu</div>
+        <div class="contact-card-sub">Le premier contact officiel se fait toujours en jeu, dans le cadre du roleplay. Approchez un membre de la Famille de façon naturelle et cohérente avec votre personnage. Évitez tout contact OOC non sollicité.</div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <span style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);">Serveur GTA RP — Los Santos</span>
+        </div>
+      </div>
+      <div class="contact-card reveal delay-1">
+        <div class="contact-card-icon">📋</div>
+        <div class="contact-card-label">Candidature</div>
+        <div class="contact-card-name">Dossier de recrutement</div>
+        <div class="contact-card-sub">Une fois le contact initial établi en jeu, vous serez invité à remplir un dossier de candidature structuré. Ce dossier sert à nous présenter votre personnage, son histoire et vos motivations d'intégration.</div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <a href="recrutement.html" style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Voir le processus →</a>
+        </div>
+      </div>
+      <div class="contact-card reveal delay-2">
+        <div class="contact-card-icon">🤝</div>
+        <div class="contact-card-label">Organisations</div>
+        <div class="contact-card-name">Relations inter-organisations</div>
+        <div class="contact-card-sub">Demandes d'alliance, pactes de non-agression ou négociations ? Ces contacts sont gérés exclusivement par le Kryetar ou le Këshilltar. Aucun membre de rang inférieur n'est habilité à négocier au nom de la famille.</div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <span style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);">Via le commandement uniquement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIENS / RÉFÉRENCES -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Ressources</span>
+      <h2 class="section-title">Annexes & Références</h2>
+      <div class="divider-gold"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:860px;margin:0 auto;">
+      <div class="link-card reveal delay-1">
+        <div class="link-card-icon">📜</div>
+        <div>
+          <div class="link-card-label">Règlement</div>
+          <div class="link-card-name">Charte Interne</div>
+          <div class="link-card-sub">Les règles détaillées de la Famille, accessible aux membres actifs via le Discord officiel.</div>
+          <div class="link-card-arrow">Accès membres ↗</div>
+        </div>
+      </div>
+      <div class="link-card reveal delay-2">
+        <div class="link-card-icon">🗺️</div>
+        <div>
+          <div class="link-card-label">Territoire</div>
+          <div class="link-card-name">Carte des Zones</div>
+          <div class="link-card-sub">Cartographie complète de nos zones d'influence et des règles de présence associées.</div>
+          <a href="territoire.html" class="link-card-arrow">Voir le territoire ↗</a>
+        </div>
+      </div>
+      <div class="link-card reveal delay-3">
+        <div class="link-card-icon">⚖️</div>
+        <div>
+          <div class="link-card-label">Code</div>
+          <div class="link-card-name">Valeurs & Honneur</div>
+          <div class="link-card-sub">Les valeurs fondamentales et le code d'honneur qui régissent chaque membre de la Famille.</div>
+          <a href="histoire.html" class="link-card-arrow">Lire le code ↗</a>
+        </div>
+      </div>
+      <div class="link-card reveal delay-1">
+        <div class="link-card-icon">👥</div>
+        <div>
+          <div class="link-card-label">Structure</div>
+          <div class="link-card-name">Hiérarchie complète</div>
+          <div class="link-card-sub">Le schéma complet de la chaîne de commandement, des rangs et des responsabilités.</div>
+          <a href="hierarchie.html" class="link-card-arrow">Voir la structure ↗</a>
+        </div>
+      </div>
+      <div class="link-card reveal delay-2">
+        <div class="link-card-icon">📝</div>
+        <div>
+          <div class="link-card-label">Rejoindre</div>
+          <div class="link-card-name">Processus de candidature</div>
+          <div class="link-card-sub">Toutes les étapes, critères et conditions pour intégrer la Famille Berisha.</div>
+          <a href="recrutement.html" class="link-card-arrow">Voir le processus ↗</a>
+        </div>
+      </div>
+      <div class="link-card reveal delay-3">
+        <div class="link-card-icon">🌹</div>
+        <div>
+          <div class="link-card-label">Histoire</div>
+          <div class="link-card-name">Lore & Origines</div>
+          <div class="link-card-sub">L'histoire et les origines de la Famille, accessible aux curieux et aux candidats sérieux.</div>
+          <a href="index.html" class="link-card-arrow">Notre histoire ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Questions fréquentes</span>
+      <h2 class="section-title">FAQ</h2>
+    </div>
+    <div class="container-sm">
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Peut-on postuler sans connaître de membre ?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Non. Le premier contact se fait toujours en jeu, naturellement. La Famille n'accepte pas les candidatures "à froid" envoyées par message direct. Si vous n'avez encore croisé aucun membre, continuez à jouer — les rencontres arrivent à ceux qui ont de la patience.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Quelle est la durée de la période probatoire ?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Il n'y a pas de durée fixe. La période d'Anëtar dure le temps qu'il faut pour que vos pairs aient suffisamment confiance en vous pour voter votre intégration. Pour certains, c'est quelques semaines. Pour d'autres, plusieurs mois. Tout dépend de votre implication réelle.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Peut-on être membre d'une autre organisation en parallèle ?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Non. L'adhésion à la Famille Berisha est exclusive. On ne peut pas servir deux maîtres. Si vous appartenez actuellement à une autre organisation, vous devrez quitter celle-ci — proprement et dans le respect du RP — avant d'intégrer nos rangs.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Y a-t-il un niveau d'expérience RP minimum requis ?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Pas de niveau chiffré, mais nous attendons une maîtrise sérieuse du roleplay : connaissance des règles de votre serveur, absence de metagaming ou de powergaming, cohérence de personnage. Un débutant motivé peut rejoindre, mais il devra montrer qu'il apprend vite.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Que se passe-t-il si on souhaite quitter la Famille ?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Quitter la Famille n'est pas une procédure RP simple. Cela fait partie du lore et de la cohérence narrative. Le départ d'un membre est géré dans le cadre du roleplay et peut avoir des conséquences pour le personnage concerné. Cela s'anticipe et se discute avec le commandement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL QUOTE -->
+<section class="section section-dark" style="text-align:center;">
+  <div class="container-sm reveal">
+    <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:2rem;">
+      <div style="height:1px;width:60px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5));"></div>
+      <div style="width:8px;height:8px;background:var(--gold);transform:rotate(45deg);opacity:.6;"></div>
+      <div style="height:1px;width:60px;background:linear-gradient(90deg,rgba(201,168,76,.5),transparent);"></div>
+    </div>
+    <p style="font-family:var(--cormorant);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.6rem);color:rgba(242,240,235,.55);line-height:1.7;margin-bottom:.75rem;">
+      "Dera është e hapur për atë që meriton.<br>Mbyllur për atë që pretendon."
+    </p>
+    <p style="font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:2.5rem;">La porte est ouverte pour qui mérite. Fermée pour qui exige.</p>
+    <a href="recrutement.html" class="btn btn-gold">Voir le processus de recrutement</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:1rem;">
+        <div class="logo-box"><span>A</span></div>
+        <div class="logo-text"><strong>FAMILJA BERISHA</strong><small>Los Santos</small></div>
+      </div>
+      <p style="font-size:.73rem;color:var(--gray-light);line-height:1.8;margin-top:.75rem;">Organisation d'élite au cœur de Los Santos.<br>Loyauté. Honneur. Discrétion.</p>
+    </div>
+    <div>
+      <div class="footer-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="hierarchie.html">Hiérarchie</a></li>
+        <li><a href="territoire.html">Territoire</a></li>
+        <li><a href="histoire.html">Valeurs & Code</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">La Devise</div>
+      <div class="footer-quote">
+        <p>"Ai që tradhëton familjen,tradhëton veten."</p>
+        <small>Celui qui trahit sa famille se trahit lui-même.</small>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Familja Berisha — Tous droits réservés</p>
+    <div class="footer-pulse"><div class="dot"></div><p>Présentation RP — Fiction uniquement</p></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  // FAQ toggle (supplement nav.js)
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
+               

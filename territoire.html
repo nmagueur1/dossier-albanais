@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Territoire — Famille Berisha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><div class="logo-box"><span>A</span></div><div class="logo-text"><strong>Famille</strong><small>Berisha</small></div></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a><a href="hierarchie.html">Hiérarchie</a>
+    <a href="territoire.html">Territoire</a><a href="histoire.html">Valeurs</a>
+    <a href="recrutement.html">Recrutement</a><a href="contact.html">Contact</a>
+  </div>
+  <a href="recrutement.html" class="nav-cta btn">Rejoindre</a>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a><a href="hierarchie.html">Hiérarchie</a>
+  <a href="territoire.html">Territoire</a><a href="histoire.html">Valeurs</a>
+  <a href="recrutement.html">Recrutement</a><a href="contact.html">Contact</a>
+  <a href="recrutement.html" class="btn btn-red" style="margin-top:1rem;">Rejoindre</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="dot-grid"></div>
+  <div class="page-hero-content">
+    <span class="section-label" style="animation:fadeUp .7s ease .2s both;display:block;">Contrôle & Influence</span>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);letter-spacing:.04em;animation:fadeUp .7s ease .4s both;">Notre Territoire</h1>
+    <div class="divider-gold" style="animation:fadeIn .7s ease .6s both;"></div>
+    <p style="font-size:.78rem;color:var(--gray-light);margin:.75rem auto 0;line-height:1.8;animation:fadeUp .7s ease .7s both;">Los Santos n'est pas notre ville. C'est notre domaine.</p>
+  </div>
+  <div class="page-hero-bottom"></div>
+</section>
+
+<!-- ZONES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Zones de Contrôle</span>
+      <h2 class="section-title">Présence sur Los Santos</h2>
+      <p style="font-size:.75rem;color:var(--gray-light);max-width:500px;margin:.75rem auto 0;line-height:1.8;">La Famille dispose de zones d'influence à travers la ville. Certaines sont sous contrôle total, d'autres font l'objet d'une présence active.</p>
+    </div>
+    <div class="territory-split">
+      <!-- Tabs -->
+      <div class="zone-tabs">
+        <button class="zone-tab" data-zone="rockwood">
+          <div class="zone-tab-left">
+            <div class="zone-tab-icon">🏘️</div>
+            <div>
+              <div class="zone-tab-name">Villa ??</div>
+              <div class="zone-tab-type">Lieu d'habitation</div>
+            </div>
+          </div>
+          <div class="zone-status" style="border-color:rgba(139,0,0,.4);color:var(--red);">
+            <div class="pulse" style="background:var(--red);"></div>Contrôlé
+          </div>
+        </button>
+        <button class="zone-tab" data-zone="port">
+          <div class="zone-tab-left">
+            <div class="zone-tab-icon">🏝️</div>
+            <div>
+              <div class="zone-tab-name">Île Rockwood</div>
+              <div class="zone-tab-type">Revendication</div>
+            </div>
+          </div>
+          <div class="zone-status" style="border-color:rgba(201,168,76,.3);color:var(--gold);">
+            <div class="pulse" style="background:var(--gold);"></div>Influence
+          </div>
+        </button>
+        <button class="zone-tab" data-zone="downtown">
+          <div class="zone-tab-left">
+            <div class="zone-tab-icon">🏙️</div>
+            <div>
+              <div class="zone-tab-name">Centre-Ville</div>
+              <div class="zone-tab-type">Secteur d'Intérêt</div>
+            </div>
+          </div>
+          <div class="zone-status" style="border-color:rgba(154,154,154,.3);color:#9A9A9A;">
+            <div class="pulse" style="background:#9A9A9A;"></div>Présence
+          </div>
+      </div>
+
+      <!-- Detail panels -->
+      <div style="position:relative;">
+        <div class="zone-detail zone-detail-panel" data-zone="rockwood">
+          <div class="zone-detail-corner tl"></div><div class="zone-detail-corner br"></div>
+          <div class="zone-wm">🏘️</div>
+          <div class="zone-detail-type">Lieu d'habitation</div>
+          <div class="zone-detail-name">Villa ??</div>
+          <div class="zone-sep"></div>
+          <p class="zone-detail-desc">Ce lieu est notre base. On y vit, on y organise notre quotidien et tout ce qui nous concerne y est protégé. Notre présence y est stable et personne n’a le droit d’y interférer.</p>
+        </div>
+        <div class="zone-detail zone-detail-panel" data-zone="port" style="display:none;">
+          <div class="zone-detail-corner tl" style="border-color:var(--gold);"></div>
+          <div class="zone-detail-corner br" style="border-color:var(--gold);"></div>
+          <div class="zone-wm">🏝️</div>
+          <div class="zone-detail-type" style="color:var(--gold);">Secteur commerciale</div>
+          <div class="zone-detail-name">Île Rockwood</div>
+          <div class="zone-sep" style="background:linear-gradient(90deg,var(--gold),transparent);"></div>
+          <p class="zone-detail-desc">L'île Rockwood est stratégique pour nous. On y est bien installés et toutes nos affaires y sont gérées et protégées. Notre présence y est solide, et on veille à ce que tout se passe sous notre contrôle.</p>
+        </div>
+        <div class="zone-detail zone-detail-panel" data-zone="downtown" style="display:none;">
+          <div class="zone-detail-corner tl" style="border-color:#9A9A9A;"></div>
+          <div class="zone-detail-corner br" style="border-color:#9A9A9A;"></div>
+          <div class="zone-wm">🏙️</div>
+          <div class="zone-detail-type" style="color:#9A9A9A;">Secteur d'Intérêt</div>
+          <div class="zone-detail-name">Centre-Ville</div>
+          <div class="zone-sep" style="background:linear-gradient(90deg,#9A9A9A,transparent);"></div>
+          <p class="zone-detail-desc">Au cœur de Los Santos, la Famille entretient une présence discrète mais effective. Nos intérêts dans les sphères légales et les réseaux de la ville sont soigneusement préservés.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;position:relative;overflow:hidden;background:var(--dark);">
+  <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(139,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(139,0,0,.06) 1px,transparent 1px);background-size:36px 36px;"></div>
+  <div class="container-sm reveal" style="position:relative;z-index:1;">
+    <p style="font-family:var(--cormorant);font-style:italic;font-size:1.4rem;color:rgba(242,240,235,.45);margin-bottom:.5rem;">"Il territorio è la nostra legge."</p>
+    <p style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:2.5rem;">Le territoire est notre loi.</p>
+    <div class="hero-buttons" style="justify-content:center;">
+      <a href="histoire.html" class="btn btn-red">Notre Code</a>
+      <a href="recrutement.html" class="btn btn-gold">Rejoindre</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:1rem;">
+        <div class="logo-box"><span>A</span></div>
+        <div class="logo-text"><strong>FAMILJA BERISHA</strong><small>Los Santos</small></div>
+      </div>
+      <p style="font-size:.73rem;color:var(--gray-light);line-height:1.8;margin-top:.75rem;">Organisation d'élite au cœur de Los Santos.<br>Loyauté. Honneur. Discrétion.</p>
+    </div>
+    <div>
+      <div class="footer-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="hierarchie.html">Hiérarchie</a></li>
+        <li><a href="territoire.html">Territoire</a></li>
+        <li><a href="histoire.html">Valeurs & Code</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">La Devise</div>
+      <div class="footer-quote">
+        <p>"Ai që tradhëton familjen,tradhëton veten."</p>
+        <small>Celui qui trahit sa famille se trahit lui-même.</small>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Familja Berisha — Tous droits réservés</p>
+    <div class="footer-pulse"><div class="dot"></div><p>Présentation RP — Fiction uniquement</p></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
